@@ -1,0 +1,28 @@
+---
+# tasks file for unattended-upgrades
+
+- name: "packages"
+  package:
+    name: '{{ item }}'
+  with_items:
+    - '{{ uu_packages }}'
+  tags:
+    - unattended-upgrades
+    - packages
+
+- name: "auto-upgrade config"
+  template:
+    src: 'auto-upgrades.j2'
+    dest: '{{ uu_auto_upgrade_config }}'
+  tags:
+    - unattended-upgrades
+    - uconfig
+  
+- name: "unattended-upgrades config"
+  template:
+    src: 'unattended-upgrades.j2'
+    dest: '{{ uu_unattended_upgrades_config }}'
+  tags:
+    - unattended-upgrades
+    - uuconfig
+...

@@ -1,0 +1,39 @@
+// {{ ansible_managed }} (unattended-upgrades.j2)
+Unattended-Upgrade::Origins-Pattern {
+{% if uu_origins_pattern is defined %}{% for origin in uu_origins_pattern %}
+        "{{ origin }}";
+{% endfor %}{% endif %}
+};
+
+Unattended-Upgrade::Package-Blacklist {
+{% if uu_package_blacklist is defined %}{% for package in uu_package_blacklist %}
+        "{{ package }}";
+{% endfor %}{% endif %}
+};
+
+{% if uu_autofix_interrupted_dpkg is defined %}Unattended-Upgrade::AutoFixInterruptedDpkg "{{ uu_autofix_interrupted_dpkg }}";
+{% endif %}
+{% if uu_minimal_steps is defined %}Unattended-Upgrade::MinimalSteps "{{ uu_minimal_steps }}";
+{% endif %}
+{% if uu_install_on_shutdown is defined %}Unattended-Upgrade::InstallOnShutdown "{{ uu_install_on_shutdown }}";
+{% endif %}
+{% if uu_mail is defined %}Unattended-Upgrade::Mail "{{ uu_mail }}";
+{% endif %}
+{% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror }}";
+{% endif %}
+{% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages }}";
+{% endif %}
+{% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies }}";
+{% endif %}
+{% if uu_automatic_reboot is defined %}Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot }}";
+{% if uu_automatic_reboot == 'true' and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers }}";
+{% endif %}
+{% endif %}
+{% if uu_automatic_reboot_time is defined %}Unattended-Upgrade::Automatic-Reboot-Time "{{ uu_automatic_reboot_time }}";
+{% endif %}
+{% if uu_dl_limit is defined %}Acquire::http::Dl-Limit "{{ uu_dl_limit }}";
+{% endif %}
+{% if uu_syslogenable is defined %}Unattended-Upgrade::SyslogEnable "{{ uu_syslogenable }}";
+{% endif %}
+{% if uu_syslogfacility is defined %}Unattended-Upgrade::SyslogFacility "{{ uu_syslogfacility }}";
+{% endif %}
