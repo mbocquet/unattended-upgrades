@@ -1,4 +1,4 @@
-'unattended-upgrades'. Ansible role to install and configure OpenLDAP server.
+'unattended-upgrades'. Ansible role to install and configure unattended-upgrades.
 
 Copyright © 2018 Mathias Bocquet (mbocquet@sekoya.org)
 
