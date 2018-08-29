@@ -24,10 +24,13 @@ None.
       roles:
          - unattended-upgrades
 
+or
 
     - hosts: servers
       roles:
          - { role: unattended-upgrades, x: 42 }
+
+if any variables comes in the future fot this role.
 
 ## License
 
