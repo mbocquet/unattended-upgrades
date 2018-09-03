@@ -37,3 +37,7 @@ Unattended-Upgrade::Package-Blacklist {
 {% endif %}
 {% if uu_syslogfacility is defined %}Unattended-Upgrade::SyslogFacility "{{ uu_syslogfacility }}";
 {% endif %}
+{% if uu_onlyonacpower is defined %}Unattended-Upgrade::OnlyOnACPower "{{ uu_onlyonacpower }}";
+{% endif %}
+{% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections }}";
+{% endif %}

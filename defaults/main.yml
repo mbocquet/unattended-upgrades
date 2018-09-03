@@ -1,6 +1,9 @@
 ---
 # defaults file for unattended-upgrades
 
+# You should put variables in a group_vars/* or host_vars/* file and keep this
+# file unchanged
+
 uu_packages:
   - 'unattended-upgrades'
 
@@ -43,10 +46,11 @@ uu_origins_pattern:
 #   - libc6-dev
 #   - libc6-i686
 
+# These are the reported default values.
 # uu_autofix_interrupted_dpkg: 'false'
-uu_minimal_steps: 'true'
+# uu_minimal_steps: 'false'
 # uu_install_on_shutdown: 'false'
-uu_mail: 'root'
+# uu_mail: 'root'
 # uu_mailonlyonerror: 'false'
 # uu_remove_unused_kernel_packages: 'true'
 # uu_remove_unused_dependencies: 'false'
@@ -56,4 +60,6 @@ uu_mail: 'root'
 # uu_dl_limit: '70'
 # uu_syslogenable: 'false'
 # uu_syslogfacility: 'daemon'
+# uu_onlyonacpower: 'true'
+# uu_skip_updates_on_metered_connections: 'true'
 ...
