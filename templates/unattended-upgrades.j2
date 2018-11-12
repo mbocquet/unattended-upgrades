@@ -41,3 +41,7 @@ Unattended-Upgrade::Package-Blacklist {
 {% endif %}
 {% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections }}";
 {% endif %}
+{% if uu_verbose is defined %}Unattended-Upgrade::Verbose "{{ uu_verbose }}";
+{% endif %}
+{% if uu_debug is defined %}Unattended-Upgrade::Debug "{{ uu_debug }}";
+{% endif %}

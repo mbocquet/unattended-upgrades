@@ -62,4 +62,6 @@ uu_origins_pattern:
 # uu_syslogfacility: 'daemon'
 # uu_onlyonacpower: 'true'
 # uu_skip_updates_on_metered_connections: 'true'
+# uu_verbose: 'false'
+# uu_debug: 'false'
 ...
