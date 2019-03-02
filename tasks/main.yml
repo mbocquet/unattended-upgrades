@@ -25,4 +25,60 @@
   tags:
     - unattended-upgrades
     - uuconfig
+
+- name: apt-daily-upgrade timer override dir
+  file:
+    path: /etc/systemd/system/apt-daily-upgrade.timer.d
+    state: directory
+  when:
+    uu_timer_oncalendar is defined or
+    uu_timer_randomizeddelaysec is defined or
+    uu_timer_persistent is defined
+  tags:
+    - unattended-upgrades
+    - timer
+
+- name: apt-daily-upgrade timer override
+  template:
+    src: apt-daily-upgrade.timer.override.conf.j2
+    dest: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
+  when:
+    uu_timer_oncalendar is defined or
+    uu_timer_randomizeddelaysec is defined or
+    uu_timer_persistent is defined
+  notify:
+    - systemd reload
+  tags:
+    - unattended-upgrades
+    - timer
+
+- name: remove apt-daily-upgrade timer override
+  file:
+    path: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
+    state: absent
+  when:
+    not (
+    uu_timer_oncalendar is defined or
+    uu_timer_randomizeddelaysec is defined or
+    uu_timer_persistent is defined
+    )
+  notify:
+    - systemd reload
+  tags:
+    - unattended-upgrades
+    - timer
+
+- name: remove apt-daily-upgrade timer override dir
+  file:
+    path: /etc/systemd/system/apt-daily-upgrade.timer.d
+    state: absent
+  when:
+    not (
+    uu_timer_oncalendar is defined or
+    uu_timer_randomizeddelaysec is defined or
+    uu_timer_persistent is defined
+    )
+  tags:
+    - unattended-upgrades
+    - timer
 ...

@@ -1,2 +1,7 @@
 ---
 # handlers file for unattended-upgrades
+
+- name: systemd reload
+  systemd:
+    daemon_reload: yes
+...

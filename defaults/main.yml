@@ -7,6 +7,11 @@
 uu_packages:
   - 'unattended-upgrades'
 
+# apt-daily-upgrade.timer parameters
+# uu_timer_oncalendar: '*-*-* 6:00'
+# uu_timer_randomizeddelaysec: '60m'
+# uu_timer_persistent: 'true'
+
 # defaults files are /etc/apt/apt.conf.d/20auto-upgrades and
 # /etc/apt/apt.conf.d/50unattended-upgrades. We create new files and keep
 # maintainer files untouched during upgrades.
