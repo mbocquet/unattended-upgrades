@@ -21,7 +21,8 @@ galaxy_info:
     #- wheezy
 
   galaxy_tags:
-    - unattended-upgrades
+    - unattended
+    - upgrades
     - apt
     - sysadmin
 
