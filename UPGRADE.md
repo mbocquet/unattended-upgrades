@@ -2,21 +2,14 @@
 
 * Backup the system.
 * Create a file **upgrade.yml** in Ansible inventory to override current release for the desired target(s).
+        apt_codename: 'buster'
+        uu_minimal_steps: false
+        uu_mailonlyonerror: false
+  or
 
-
-    ---
-    apt_codename: 'buster'
-    uu_minimal_steps: false
-    uu_mailonlyonerror: false
-    ...
-
-or
-
-    ---
-    apt_codename: 'stable'
-    uu_minimal_steps: false
-    uu_mailonlyonerror: false
-    ...
+        apt_codename: 'stable'
+        uu_minimal_steps: false
+        uu_mailonlyonerror: false
 * Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
 * Wait for upgrades
 * If you're impatient, force them via running `unattended-upgrades` on the target host.
