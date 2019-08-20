@@ -20,32 +20,29 @@ When upgrade is successful :
 * In the Ansible inventory, move host from distro-codename group to distro-codename+1 group.
   for stretch to buster :
 
+        ...
+        [stretch]
+        server0     <-- before
+        server1
+        server2
 
-    ...
-    [stretch]
-    server0     <-- before
-    server1
-    server2
-
-    [buster]
-    server0     <-- after
-    ...
+        [buster]
+        server0     <-- after
+        ...
 
   for stretch to stable :
 
+        ...
+        [stretch]
+        server0     <-- before
+        server1
+        server2
 
-    ...
-    [stretch]
-    server0     <-- before
-    server1
-    server2
-
-    [stable]
-    server0     <-- after
-    ...
+        [stable]
+        server0     <-- after
+        ...
 * Remove the **upgrade.yml** file.
 * Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
-
 * Merge new config files if needed (<a href="https://wiki.sekoya.org/#!apt.md#Configuration_files_handling" target="new">https://wiki.sekoya.org/#!apt.md#Configuration_files_handling</a>)
 
 You're done !
