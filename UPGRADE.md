@@ -2,6 +2,7 @@
 
 * Backup the system.
 * Create a file **upgrade.yml** in Ansible inventory to override current release for the desired target(s).
+        
         apt_codename: 'buster'
         uu_minimal_steps: false
         uu_mailonlyonerror: false
