@@ -42,7 +42,7 @@ When upgrade is successful :
         server0     <-- after
         ...
 * Remove the **upgrade.yml** file.
-* Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
+* Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role). This should revert the temporary modifications introduced by the **upgrade.yml** variables.
 * Merge new config files if needed (<a href="https://wiki.sekoya.org/#!apt.md#Configuration_files_handling" target="new">https://wiki.sekoya.org/#!apt.md#Configuration_files_handling</a>)
 
 You're done !
