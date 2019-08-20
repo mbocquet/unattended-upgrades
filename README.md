@@ -32,6 +32,8 @@ or
 
 if any variables comes in the future fot this role.
 
+See [UPGRADE.md](UPGRADE.md) to upgrade from Debian N to Debian N+1 with this Ansible role.
+
 ## License
 
 GPLv3
