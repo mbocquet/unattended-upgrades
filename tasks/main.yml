@@ -17,7 +17,7 @@
   tags:
     - unattended-upgrades
     - uconfig
-  
+
 - name: "unattended-upgrades config"
   template:
     src: 'unattended-upgrades.j2'
