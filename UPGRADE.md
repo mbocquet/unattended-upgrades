@@ -1,7 +1,7 @@
 # Upgrade to next major version with this Ansible role
 
 * Backup the system.
-* Create a file **upgrade.yml** in Ansible inventory to override current release for the desired target(s).
+* Create a file **upgrade.yml** in Ansible inventory to override current codename or release for the desired target(s).
         
         apt_codename: 'buster'
         uu_minimal_steps: false
@@ -12,7 +12,8 @@
         uu_minimal_steps: false
         uu_mailonlyonerror: false
 * Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
-* Wait for upgrades
+* Adapt third party repositories (**/etc/apt/sources.list.d/\*.list**) to reflect new codename or release.
+* Wait for upgrades.
 * If you're impatient, force them via running `unattended-upgrades` on the target host.
 
 When upgrade is successful :
