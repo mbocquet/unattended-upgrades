@@ -1,11 +1,9 @@
 ---
 # tasks file for unattended-upgrades
-
-- name: "packages"
+- name: package
   package:
-    name: '{{ item }}'
-  with_items:
-    - '{{ uu_packages }}'
+    name: '{{ uu_packages }}'
+    force_apt_get: yes
   tags:
     - unattended-upgrades
     - packages
