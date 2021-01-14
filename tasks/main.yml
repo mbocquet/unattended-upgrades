@@ -3,10 +3,9 @@
 - name: package
   package:
     name: '{{ uu_packages }}'
-    force_apt_get: yes
   tags:
     - unattended-upgrades
-    - packages
+    - package
 
 - name: "auto-upgrade config"
   template:
@@ -14,7 +13,7 @@
     dest: '{{ uu_auto_upgrade_config }}'
   tags:
     - unattended-upgrades
-    - uconfig
+    - auconfig
 
 - name: "unattended-upgrades config"
   template:
