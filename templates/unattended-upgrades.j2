@@ -25,9 +25,8 @@ Unattended-Upgrade::Package-Blacklist {
 {% endif %}
 {% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies }}";
 {% endif %}
-{% if uu_automatic_reboot is defined %}Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot }}";
-{% if uu_automatic_reboot == 'true' and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers }}";
-{% endif %}
+Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | default('false') }}";
+{% if uu_automatic_reboot is defined and uu_automatic_reboot == 'true' and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers }}";
 {% endif %}
 {% if uu_automatic_reboot_time is defined %}Unattended-Upgrade::Automatic-Reboot-Time "{{ uu_automatic_reboot_time }}";
 {% endif %}
