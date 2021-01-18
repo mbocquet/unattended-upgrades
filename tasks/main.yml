@@ -44,7 +44,7 @@
     uu_timer_randomizeddelaysec is defined or
     uu_timer_persistent is defined
   notify:
-    - systemd reload
+    - apt-daily-upgrade restart
   tags:
     - unattended-upgrades
     - timer
@@ -60,7 +60,7 @@
     uu_timer_persistent is defined
     )
   notify:
-    - systemd reload
+    - apt-daily-upgrade restart
   tags:
     - unattended-upgrades
     - timer
