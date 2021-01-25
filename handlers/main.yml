@@ -5,4 +5,7 @@
   systemd:
     name: apt-daily-upgrade
     state: restarted
+
+- name: systemd reload
+  systemd:
     daemon_reload: yes
