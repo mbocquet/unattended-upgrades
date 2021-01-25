@@ -29,8 +29,7 @@
     state: directory
   when:
     uu_timer_oncalendar is defined or
-    uu_timer_randomizeddelaysec is defined or
-    uu_timer_persistent is defined
+    uu_timer_randomizeddelaysec is defined
   tags:
     - unattended-upgrades
     - timer
@@ -41,10 +40,9 @@
     dest: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
   when:
     uu_timer_oncalendar is defined or
-    uu_timer_randomizeddelaysec is defined or
-    uu_timer_persistent is defined
+    uu_timer_randomizeddelaysec is defined
   notify:
-    - apt-daily-upgrade restart
+    - systemd reload
   tags:
     - unattended-upgrades
     - timer
@@ -56,11 +54,8 @@
   when:
     not (
     uu_timer_oncalendar is defined or
-    uu_timer_randomizeddelaysec is defined or
-    uu_timer_persistent is defined
+    uu_timer_randomizeddelaysec is defined
     )
-  notify:
-    - apt-daily-upgrade restart
   tags:
     - unattended-upgrades
     - timer
@@ -72,8 +67,7 @@
   when:
     not (
     uu_timer_oncalendar is defined or
-    uu_timer_randomizeddelaysec is defined or
-    uu_timer_persistent is defined
+    uu_timer_randomizeddelaysec is defined
     )
   tags:
     - unattended-upgrades
