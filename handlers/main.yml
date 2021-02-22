@@ -1,11 +1,9 @@
 ---
 # handlers file for unattended-upgrades
 
-- name: apt-daily-upgrade restart
+- name: apt-daily-upgrade.timer restart
   systemd:
-    name: apt-daily-upgrade
+    name: apt-daily-upgrade.timer
+    daemon_reload: yes
     state: restarted
 
-- name: systemd reload
-  systemd:
-    daemon_reload: yes
