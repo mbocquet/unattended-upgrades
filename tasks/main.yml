@@ -42,7 +42,7 @@
     uu_timer_oncalendar is defined or
     uu_timer_randomizeddelaysec is defined
   notify:
-    - systemd reload
+    - apt-daily-upgrade.timer restart
   tags:
     - unattended-upgrades
     - timer
@@ -69,6 +69,8 @@
     uu_timer_oncalendar is defined or
     uu_timer_randomizeddelaysec is defined
     )
+  notify:
+   - apt-daily-upgrade.timer restart
   tags:
     - unattended-upgrades
     - timer
