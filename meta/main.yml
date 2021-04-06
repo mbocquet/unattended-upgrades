@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Mathias BOCQUET
   description: Ansible role to install and configure unattended-upgrades.
@@ -10,17 +11,13 @@ galaxy_info:
   min_ansible_version: 1.2
 
   platforms:
-  - name: Debian
-    versions:
-    #- all
-    - buster
-    #- etch
-    - jessie
-    #- lenny
-    - sid
-    #- squeeze
-    - stretch
-    #- wheezy
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
+        - bullseye
+        - sid
 
   galaxy_tags:
     - unattended

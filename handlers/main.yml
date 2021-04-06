@@ -4,6 +4,5 @@
 - name: apt-daily-upgrade.timer restart
   systemd:
     name: apt-daily-upgrade.timer
-    daemon_reload: yes
+    daemon_reload: true
     state: restarted
-

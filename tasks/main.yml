@@ -11,6 +11,7 @@
   template:
     src: 'auto-upgrades.j2'
     dest: '{{ uu_auto_upgrade_config }}'
+    mode: 0644
   tags:
     - unattended-upgrades
     - auconfig
@@ -19,6 +20,7 @@
   template:
     src: 'unattended-upgrades.j2'
     dest: '{{ uu_unattended_upgrades_config }}'
+    mode: 0644
   tags:
     - unattended-upgrades
     - uuconfig
@@ -27,6 +29,7 @@
   file:
     path: /etc/systemd/system/apt-daily-upgrade.timer.d
     state: directory
+    mode: 0755
   when:
     uu_timer_oncalendar is defined or
     uu_timer_randomizeddelaysec is defined
@@ -38,6 +41,7 @@
   template:
     src: apt-daily-upgrade.timer.override.conf.j2
     dest: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
+    mode: 0644
   when:
     uu_timer_oncalendar is defined or
     uu_timer_randomizeddelaysec is defined
@@ -70,7 +74,7 @@
     uu_timer_randomizeddelaysec is defined
     )
   notify:
-   - apt-daily-upgrade.timer restart
+    - apt-daily-upgrade.timer restart
   tags:
     - unattended-upgrades
     - timer
