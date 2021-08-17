@@ -11,22 +11,22 @@ Unattended-Upgrade::Package-Blacklist {
 {% endfor %}{% endif %}
 };
 
-{% if uu_autofix_interrupted_dpkg is defined %}Unattended-Upgrade::AutoFixInterruptedDpkg "{{ uu_autofix_interrupted_dpkg }}";
+{% if uu_autofix_interrupted_dpkg is defined %}Unattended-Upgrade::AutoFixInterruptedDpkg "{{ uu_autofix_interrupted_dpkg | lower }}";
 {% endif %}
-{% if uu_minimal_steps is defined %}Unattended-Upgrade::MinimalSteps "{{ uu_minimal_steps }}";
+{% if uu_minimal_steps is defined %}Unattended-Upgrade::MinimalSteps "{{ uu_minimal_steps | lower }}";
 {% endif %}
-{% if uu_install_on_shutdown is defined %}Unattended-Upgrade::InstallOnShutdown "{{ uu_install_on_shutdown }}";
+{% if uu_install_on_shutdown is defined %}Unattended-Upgrade::InstallOnShutdown "{{ uu_install_on_shutdown | lower }}";
 {% endif %}
 {% if uu_mail is defined %}Unattended-Upgrade::Mail "{{ uu_mail }}";
 {% endif %}
-{% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror }}";
+{% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror | lower }}";
 {% endif %}
-{% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages }}";
+{% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages | lower }}";
 {% endif %}
-{% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies }}";
+{% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies | lower }}";
 {% endif %}
-Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | default('false') }}";
-{% if uu_automatic_reboot is defined and uu_automatic_reboot == 'true' and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers }}";
+Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | default('false') | lower }}";
+{% if uu_automatic_reboot is defined and uu_automatic_reboot is true and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers | lower }}";
 {% endif %}
 {% if uu_automatic_reboot_time is defined %}Unattended-Upgrade::Automatic-Reboot-Time "{{ uu_automatic_reboot_time }}";
 {% endif %}
@@ -38,7 +38,7 @@ Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | default('false') 
 {% endif %}
 {% if uu_onlyonacpower is defined %}Unattended-Upgrade::OnlyOnACPower "{{ uu_onlyonacpower }}";
 {% endif %}
-{% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections }}";
+{% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections | lower }}";
 {% endif %}
 {% if uu_verbose is defined %}Unattended-Upgrade::Verbose "{{ uu_verbose }}";
 {% endif %}
