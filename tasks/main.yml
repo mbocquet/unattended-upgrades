@@ -8,18 +8,18 @@
     - unattended-upgrades
     - package
 
-- name: "auto-upgrade config"
+- name: auto-upgrade config
   template:
-    src: 'auto-upgrades.j2'
+    src: auto-upgrades.j2
     dest: '{{ uu_auto_upgrade_config }}'
     mode: 0644
   tags:
     - unattended-upgrades
     - auconfig
 
-- name: "unattended-upgrades config"
+- name: unattended-upgrades config
   template:
-    src: 'unattended-upgrades.j2'
+    src: unattended-upgrades.j2
     dest: '{{ uu_unattended_upgrades_config }}'
     mode: 0644
   tags:
