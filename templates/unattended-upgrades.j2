@@ -21,6 +21,8 @@ Unattended-Upgrade::Package-Blacklist {
 {% endif %}
 {% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror | lower }}";
 {% endif %}
+{% if uu_mailreport is defined and uu_mailreport | lower in ['always','only-on-error','on-change'] %}Unattended-Upgrade::MailReport "{{ uu_mailreport | lower }}";
+{% endif %}
 {% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages | lower }}";
 {% endif %}
 {% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies | lower }}";
