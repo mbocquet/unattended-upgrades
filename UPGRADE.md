@@ -33,7 +33,10 @@ Note: Always use backups !
     ...
 
 * In the Ansible inventory, move host from distro-codename group to distro-codename+1 group.
-  example to upgrade node0 from buster to bullseye :
+
+The inventory reflects the "desired" state
+
+Example to upgrade node0 from buster to bullseye :
 
 **inventory/hosts**
 
@@ -68,7 +71,8 @@ After :
 When upgrade is successful :
 
 * Merge new config files if needed (<a href="https://wiki.sekoya.org/#!apt.md#Configuration_files_handling" target="new">https://wiki.sekoya.org/#!apt.md#Configuration_files_handling</a>)
-* Revert to your default MinimalSteps value if applicable by running the playbook again
+* Revert to your default MinimalSteps value if applicable by running the playbook again without extra var "uu_minimal_steps".
+
 `./playbooks/unattended-upgrades.yml`
 
 You're done !
