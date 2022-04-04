@@ -56,7 +56,9 @@ uu_origins_pattern:
 # uu_minimal_steps: 'false'
 # uu_install_on_shutdown: 'false'
 # uu_mail: 'root'
-# uu_mailonlyonerror: 'false'
+# uu_mailonlyonerror: 'false' # This one is deprecated on bullseye
+# uu_mailreport: ('always'|'only-on-error'|'on-change')
+# uu_mailreport: 'on-change'
 # uu_remove_unused_kernel_packages: 'true'
 # uu_remove_unused_dependencies: 'false'
 # uu_automatic_reboot: 'false'
@@ -69,4 +71,3 @@ uu_origins_pattern:
 # uu_skip_updates_on_metered_connections: 'true'
 # uu_verbose: 'false'
 # uu_debug: 'false'
-...
