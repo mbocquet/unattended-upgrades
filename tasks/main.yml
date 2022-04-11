@@ -8,6 +8,31 @@
     - unattended-upgrades
     - package
 
+- name: dpkg_divert
+  community.general.dpkg_divert:
+    path: "{{ item.path }}"
+    divert: "{{ item.divert }}"
+    rename: yes
+  loop:
+    - path: "{{ uu_auto_upgrade_config }}"
+      divert: "/etc/apt/20auto-upgrades.diverted"
+    - path: "{{ uu_unattended_upgrades_config }}"
+      divert: "/etc/apt/50unattended-upgrades.diverted"
+  tags:
+    - unattended-upgrades
+    - dpkg_divert
+
+- name: ensure obsolete files from previous role versions are absent
+  file:
+    path: "/etc/apt/apt.conf.d/{{ item }}"
+    state: absent
+  loop:
+    - 21auto-upgrades
+    - 51unattended-upgrades
+  tags:
+    - unattended-upgrades
+    - obsolete
+
 - name: auto-upgrade config
   template:
     src: auto-upgrades.j2

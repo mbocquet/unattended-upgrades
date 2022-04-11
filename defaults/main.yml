@@ -13,10 +13,13 @@ uu_packages:
 # uu_timer_persistent: 'true'
 
 # defaults files are /etc/apt/apt.conf.d/20auto-upgrades and
-# /etc/apt/apt.conf.d/50unattended-upgrades. We create new files and keep
-# maintainer files untouched during upgrades.
-uu_auto_upgrade_config: '/etc/apt/apt.conf.d/21auto-upgrades'
-uu_unattended_upgrades_config: '/etc/apt/apt.conf.d/51unattended-upgrades'
+# /etc/apt/apt.conf.d/50unattended-upgrades. We "divert" them in parent
+# directory /etc/apt/20auto-upgrades.diverted and
+# /etc/apt/50unattended-upgrades.diverted to keep new upstream versions up to
+# date during upgrades.
+
+uu_auto_upgrade_config: '/etc/apt/apt.conf.d/20auto-upgrades'
+uu_unattended_upgrades_config: '/etc/apt/apt.conf.d/50unattended-upgrades'
 
 uu_update_package_list: '1'
 # uu_download_upgradeable_packages: '1'
@@ -24,8 +27,7 @@ uu_update_package_list: '1'
 uu_autocleaninterval: '7'
 
 # Beware : some variables may be unsupported depending on unattended-upgrades
-# package version. Check /etc/apt/apt.conf.d/50unattended-upgrades for valid
-# variables.
+# package version. Check unattended-upgrades documentation for valid variables.
 
 # origins pattern
 uu_origins_pattern:
