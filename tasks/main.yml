@@ -12,7 +12,7 @@
   community.general.dpkg_divert:
     path: "{{ item.path }}"
     divert: "{{ item.divert }}"
-    rename: yes
+    rename: true
   loop:
     - path: "{{ uu_auto_upgrade_config }}"
       divert: "/etc/apt/20auto-upgrades.diverted"
