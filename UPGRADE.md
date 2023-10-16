@@ -2,7 +2,7 @@
 
 Targets can be upgraded from Debian N to Debian N+n major version. n can be 1 but also 2, 3 etc.
 
-Upgrading Debian 8 or 9 directly to Debian 11 is possible.
+Upgrading Debian 8 or 9 directly to Debian latest release is possible.
 
 Upgrading from lower versions is untested but should also work.
 
