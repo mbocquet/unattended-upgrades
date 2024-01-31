@@ -1,6 +1,6 @@
 'unattended-upgrades'. Ansible role to install and configure unattended-upgrades.
 
-Copyright © 2018-2023 Mathias Bocquet (mbocquet@sekoya.org)
+Copyright © 2018-2024 Mathias Bocquet (mbocquet@sekoya.org)
 
 This file is part of 'unattended-upgrades' Ansible role.
 
