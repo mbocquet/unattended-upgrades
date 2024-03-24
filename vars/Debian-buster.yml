@@ -1,0 +1,3 @@
+---
+uu_origins_pattern_default:
+  - 'origin=Debian,codename=${distro_codename},label=Debian-Security'
