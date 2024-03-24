@@ -1,8 +1,14 @@
 // {{ ansible_managed }} (unattended-upgrades.j2)
-Unattended-Upgrade::Origins-Pattern {
-{% if uu_origins_pattern is defined %}{% for origin in uu_origins_pattern %}
-        "{{ origin }}";
-{% endfor %}{% endif %}
+Unattended-Upgrade:{{ uu_pattern_name }} {
+{% if uu_origins_pattern is defined %}
+{% for origin in uu_origins_pattern %}
+    "{{ origin }}";
+{% endfor %}
+{% else %}
+{% for origin in uu_origins_pattern_default %}
+    "{{ origin }}";
+{% endfor %}
+{% endif %}
 };
 
 Unattended-Upgrade::Package-Blacklist {

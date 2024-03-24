@@ -1,4 +1,17 @@
 ---
+
+
+- name: "Add distribution-specific variables"
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_release }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+      paths:
+        - 'vars'
+
+
 # tasks file for unattended-upgrades
 - name: package
   package:
