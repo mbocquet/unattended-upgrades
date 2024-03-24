@@ -73,3 +73,14 @@ uu_origins_pattern:
 # uu_skip_updates_on_metered_connections: 'true'
 # uu_verbose: 'false'
 # uu_debug: 'false'
+
+
+
+# Unattended-Upgrade::OnlyOnACPower
+# Download and install upgrades only on AC power
+# (i.e. skip or gracefully stop updates on battery)
+uu_only_on_ac_power: false
+
+
+# Cache update time for apt module
+uu_cache_valid_time: 3600
