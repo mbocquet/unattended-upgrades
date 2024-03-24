@@ -8,6 +8,16 @@
     - unattended-upgrades
     - package
 
+- name: "Install powermgmt-base"
+  ansible.builtin.apt:
+    name: "powermgmt-base"
+    state: "present"
+    cache_valid_time: "{{ uu_cache_valid_time }}"
+    update_cache: "yes"
+    force_apt_get: "yes"
+  when: "uu_only_on_ac_power"
+
+
 - name: dpkg_divert
   community.general.dpkg_divert:
     path: "{{ item.path }}"
