@@ -1,14 +1,14 @@
 ---
 # tasks file for unattended-upgrades
-- name: package
-  package:
+- name: Package
+  ansible.builtin.package:
     name: '{{ uu_packages }}'
     update_cache: true
   tags:
     - unattended-upgrades
     - package
 
-- name: dpkg_divert
+- name: Dpkg_divert
   community.general.dpkg_divert:
     path: "{{ item.path }}"
     divert: "{{ item.divert }}"
@@ -22,8 +22,8 @@
     - unattended-upgrades
     - dpkg_divert
 
-- name: ensure obsolete files from previous role versions are absent
-  file:
+- name: Ensure obsolete files from previous role versions are absent
+  ansible.builtin.file:
     path: "/etc/apt/apt.conf.d/{{ item }}"
     state: absent
   loop:
@@ -33,8 +33,8 @@
     - unattended-upgrades
     - obsolete
 
-- name: auto-upgrade config
-  template:
+- name: Auto-upgrade config
+  ansible.builtin.template:
     src: auto-upgrades.j2
     dest: '{{ uu_auto_upgrade_config }}'
     mode: 0644
@@ -42,8 +42,8 @@
     - unattended-upgrades
     - auconfig
 
-- name: unattended-upgrades config
-  template:
+- name: Unattended-upgrades config
+  ansible.builtin.template:
     src: unattended-upgrades.j2
     dest: '{{ uu_unattended_upgrades_config }}'
     mode: 0644
@@ -51,8 +51,8 @@
     - unattended-upgrades
     - uuconfig
 
-- name: apt-daily-upgrade timer override dir
-  file:
+- name: Apt-daily-upgrade timer override dir
+  ansible.builtin.file:
     path: /etc/systemd/system/apt-daily-upgrade.timer.d
     state: directory
     mode: 0755
@@ -63,8 +63,8 @@
     - unattended-upgrades
     - timer
 
-- name: apt-daily-upgrade timer override
-  template:
+- name: Apt-daily-upgrade timer override
+  ansible.builtin.template:
     src: apt-daily-upgrade.timer.override.conf.j2
     dest: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
     mode: 0644
@@ -72,13 +72,13 @@
     uu_timer_oncalendar is defined or
     uu_timer_randomizeddelaysec is defined
   notify:
-    - apt-daily-upgrade.timer restart
+    - Apt-daily-upgrade.timer restart
   tags:
     - unattended-upgrades
     - timer
 
-- name: remove apt-daily-upgrade timer override
-  file:
+- name: Remove apt-daily-upgrade timer override
+  ansible.builtin.file:
     path: /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
     state: absent
   when:
@@ -90,8 +90,8 @@
     - unattended-upgrades
     - timer
 
-- name: remove apt-daily-upgrade timer override dir
-  file:
+- name: Remove apt-daily-upgrade timer override dir
+  ansible.builtin.file:
     path: /etc/systemd/system/apt-daily-upgrade.timer.d
     state: absent
   when:
@@ -100,7 +100,7 @@
     uu_timer_randomizeddelaysec is defined
     )
   notify:
-    - apt-daily-upgrade.timer restart
+    - Apt-daily-upgrade.timer restart
   tags:
     - unattended-upgrades
     - timer
