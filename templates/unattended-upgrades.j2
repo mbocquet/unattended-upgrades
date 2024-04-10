@@ -11,38 +11,45 @@ Unattended-Upgrade::Package-Blacklist {
 {% endfor %}{% endif %}
 };
 
-{% if uu_autofix_interrupted_dpkg is defined %}Unattended-Upgrade::AutoFixInterruptedDpkg "{{ uu_autofix_interrupted_dpkg | lower }}";
+{% if uu_autofix_interrupted_dpkg is defined %}Unattended-Upgrade::AutoFixInterruptedDpkg "{{ uu_autofix_interrupted_dpkg | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_minimal_steps is defined %}Unattended-Upgrade::MinimalSteps "{{ uu_minimal_steps | lower }}";
+{% if uu_minimal_steps is defined %}Unattended-Upgrade::MinimalSteps "{{ uu_minimal_steps | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_install_on_shutdown is defined %}Unattended-Upgrade::InstallOnShutdown "{{ uu_install_on_shutdown | lower }}";
+{% if uu_install_on_shutdown is defined %}Unattended-Upgrade::InstallOnShutdown "{{ uu_install_on_shutdown | ternary('true', 'false') }}";
 {% endif %}
 {% if uu_mail is defined %}Unattended-Upgrade::Mail "{{ uu_mail }}";
 {% endif %}
-{% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror | lower }}";
+{% if uu_mailonlyonerror is defined %}Unattended-Upgrade::MailOnlyOnError "{{ uu_mailonlyonerror | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_mailreport is defined and uu_mailreport | lower in ['always','only-on-error','on-change'] %}Unattended-Upgrade::MailReport "{{ uu_mailreport | lower }}";
+{% if uu_mailreport is defined and uu_mailreport | lower in ['always', 'only-on-error', 'on-change'] %}Unattended-Upgrade::MailReport "{{ uu_mailreport | lower }}";
 {% endif %}
-{% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages | lower }}";
+{% if uu_remove_unused_kernel_packages is defined %}Unattended-Upgrade::Remove-Unused-Kernel-Packages "{{ uu_remove_unused_kernel_packages | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies | lower }}";
+{% if uu_remove_new_unused_dependencies is defined %}Unattended-Upgrade::Remove-New-Unused-Dependencies "{{ uu_remove_new_unused_dependencies | ternary('true', 'false') }}";
 {% endif %}
-Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | default('false') | lower }}";
-{% if uu_automatic_reboot is defined and uu_automatic_reboot is true and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers | lower }}";
+{% if uu_remove_unused_dependencies is defined %}Unattended-Upgrade::Remove-Unused-Dependencies "{{ uu_remove_unused_dependencies | ternary('true', 'false') }}";
+{% endif %}
+{% if uu_automatic_reboot is defined %}Unattended-Upgrade::Automatic-Reboot "{{ uu_automatic_reboot | ternary('true', 'false')  }}";
+{% if uu_automatic_reboot is true and uu_automatic_reboot_withusers is defined %}Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ uu_automatic_reboot_withusers | ternary('true', 'false') }}";
+{% endif %}
 {% endif %}
 {% if uu_automatic_reboot_time is defined %}Unattended-Upgrade::Automatic-Reboot-Time "{{ uu_automatic_reboot_time }}";
 {% endif %}
 {% if uu_dl_limit is defined %}Acquire::http::Dl-Limit "{{ uu_dl_limit }}";
 {% endif %}
-{% if uu_syslogenable is defined %}Unattended-Upgrade::SyslogEnable "{{ uu_syslogenable }}";
+{% if uu_syslogenable is defined %}Unattended-Upgrade::SyslogEnable "{{ uu_syslogenable | ternary('true', 'false') }}";
 {% endif %}
 {% if uu_syslogfacility is defined %}Unattended-Upgrade::SyslogFacility "{{ uu_syslogfacility }}";
 {% endif %}
-{% if uu_onlyonacpower is defined %}Unattended-Upgrade::OnlyOnACPower "{{ uu_onlyonacpower }}";
+{% if uu_onlyonacpower is defined %}Unattended-Upgrade::OnlyOnACPower "{{ (uu_onlyonacpower == true) | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections | lower }}";
+{% if uu_skip_updates_on_metered_connections is defined %}Unattended-Upgrade::Skip-Updates-On-Metered-Connections "{{ uu_skip_updates_on_metered_connections | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_verbose is defined %}Unattended-Upgrade::Verbose "{{ uu_verbose }}";
+{% if uu_verbose is defined %}Unattended-Upgrade::Verbose "{{ uu_verbose | ternary('true', 'false') }}";
 {% endif %}
-{% if uu_debug is defined %}Unattended-Upgrade::Debug "{{ uu_debug }}";
+{% if uu_debug is defined %}Unattended-Upgrade::Debug "{{ uu_debug | ternary('true', 'false') }}";
+{% endif %}
+{% if uu_allow_downgrade is defined %}Unattended-Upgrade::Allow-downgrade "{{ uu_allow_downgrade | ternary('true', 'false') }}";
+{% endif %}
+{% if uu_allow_apt_mark_fallback is defined %}Unattended-Upgrade::Allow-APT-Mark-Fallback "{{ uu_allow_apt_mark_fallback | ternary('true', 'false') }}";
 {% endif %}
