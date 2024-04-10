@@ -40,33 +40,23 @@ uu_autocleaninterval: '7'
 #   - libc6-i686
 
 # These are the reported default values.
-# uu_autofix_interrupted_dpkg: 'false'
-# uu_minimal_steps: 'false'
-# uu_install_on_shutdown: 'false'
+# uu_autofix_interrupted_dpkg: true
+# uu_minimal_steps: true
+# uu_install_on_shutdown: false
 # uu_mail: 'root'
-# uu_mailonlyonerror: 'false' # This one is deprecated on bullseye
-# uu_mailreport: ('always'|'only-on-error'|'on-change')
 # uu_mailreport: 'on-change'
-# uu_remove_unused_kernel_packages: 'true'
-# uu_remove_unused_dependencies: 'false'
-# uu_automatic_reboot: 'false'
-# uu_automatic_reboot_withusers: 'false'
+# uu_remove_unused_kernel_packages: true
+# uu_remove_new_unused_dependencies: true
+# uu_remove_unused_dependencies: false
+# uu_automatic_reboot: false
+# uu_automatic_reboot_withusers: true
 # uu_automatic_reboot_time: '02:00'
 # uu_dl_limit: '70'
-# uu_syslogenable: 'false'
+# uu_syslogenable: false
 # uu_syslogfacility: 'daemon'
-# uu_onlyonacpower: 'true'
-# uu_skip_updates_on_metered_connections: 'true'
-# uu_verbose: 'false'
-# uu_debug: 'false'
-
-
-
-# Unattended-Upgrade::OnlyOnACPower
-# Download and install upgrades only on AC power
-# (i.e. skip or gracefully stop updates on battery)
-uu_only_on_ac_power: false
-
-
-# Cache update time for apt module
-uu_cache_valid_time: 3600
+# uu_onlyonacpower: true
+# uu_skip_updates_on_metered_connections: true
+# uu_verbose: false
+# uu_debug: false
+# uu_allow_downgrade: false
+# uu_allow_apt_mark_fallback: true
