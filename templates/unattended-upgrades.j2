@@ -1,12 +1,12 @@
 // {{ ansible_managed }} (unattended-upgrades.j2)
-Unattended-Upgrade:{{ uu_pattern_name }} {
+Unattended-Upgrade::{{ uu_pattern_name }} {
 {% if uu_origins_pattern is defined %}
 {% for origin in uu_origins_pattern %}
-    "{{ origin }}";
+        "{{ origin }}";
 {% endfor %}
 {% else %}
 {% for origin in uu_origins_pattern_default %}
-    "{{ origin }}";
+        "{{ origin }}";
 {% endfor %}
 {% endif %}
 };
