@@ -1,5 +1,14 @@
 ---
 # tasks file for unattended-upgrades
+- name: "Add distribution-specific variables"
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_release }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+      paths:
+        - 'vars'
 - name: Package
   ansible.builtin.package:
     name: '{{ uu_packages }}'
@@ -7,6 +16,14 @@
   tags:
     - unattended-upgrades
     - package
+
+- name: Package
+  ansible.builtin.apt:
+    name: powermgmt-base
+    update_cache: true
+  when:
+    - uu_onlyonacpower is defined
+    - uu_onlyonacpower
 
 - name: Dpkg_divert
   community.general.dpkg_divert:
