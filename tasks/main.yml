@@ -9,6 +9,11 @@
         - "{{ ansible_facts.distribution }}.yml"
       paths:
         - 'vars'
+  tags:
+    - unattended-upgrades
+    - vars
+    - core
+
 - name: Package
   ansible.builtin.package:
     name: '{{ uu_packages }}'
@@ -24,6 +29,9 @@
   when:
     - uu_onlyonacpower is defined
     - uu_onlyonacpower
+  tags:
+    - unattended-upgrades
+    - package
 
 - name: Dpkg_divert
   community.general.dpkg_divert:
