@@ -14,8 +14,8 @@ uu_packages:
 
 # defaults files are /etc/apt/apt.conf.d/20auto-upgrades and
 # /etc/apt/apt.conf.d/50unattended-upgrades. We "divert" them in parent
-# directory /etc/apt/20auto-upgrades.diverted and
-# /etc/apt/50unattended-upgrades.diverted to keep new upstream versions up to
+# directory /etc/apt/20auto-upgrades.distrib and
+# /etc/apt/50unattended-upgrades.distrib to keep upstream versions up to
 # date during upgrades.
 
 uu_auto_upgrade_config: '/etc/apt/apt.conf.d/20auto-upgrades'
