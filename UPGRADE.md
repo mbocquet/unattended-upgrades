@@ -1,78 +1,81 @@
-# Upgrade to next major version with this Ansible role
+# Upgrade to a next major version with this Ansible role
 
-Targets can be upgraded from Debian N to Debian N+n major version. n can be 1 but also 2, 3 etc.
-
-Upgrading Debian 8 or 9 directly to Debian latest release is possible.
-
+Targets can be upgraded from Debian N to Debian N+n major version. n can be 1, 2, 3...
+Upgrading Debian from version 8 and later to Debian latest release is possible.
 Upgrading from lower versions is untested but should also work.
 
 Note: Always use backups !
 
-* For each Debian version, use codename groups and related variables in Ansible inventory
+For each Debian version, use codename groups and related variables in Ansible inventory.
 
-**inventory/group_vars/buster/apt.yml**
-
-    ---
-    apt_codename: buster
-
-**inventory/group_vars/bullseye/apt.yml**
+**inventory/group_vars/bookworm/apt.yml**
 
     ---
-    apt_codename: bullseye
+    apt_codename: bookworm
+
+**inventory/group_vars/trixie/apt.yml**
+
+    ---
+    apt_codename: trixie
 
 **inventory/hosts**
 
-    ...
-    [buster]
+    [bookworm]
     node0
     node1
     node2
-    ...
-    [bullseye]
+
+    [trixie]
     node3
-    ...
 
-* In the Ansible inventory, move host from distro-codename group to distro-codename+1 group.
+In the Ansible inventory, move host from distro-codename group to distro-codename+1 group.
+The inventory reflects the "desired" state.
 
-The inventory reflects the "desired" state
-
-Example to upgrade node0 from buster to bullseye :
+Example to upgrade node0 from bookworm to trixie :
 
 **inventory/hosts**
 
-Before :
-
-    ...
-    [buster]
-    node0
+```diff
+    [bookworm]
+-   node0
     node1
     node2
-    ...
 
-After :
-
-    ...
-    [buster]
-    node1
-    node2
-    ...
-    [bullseye]
-    node0
+    [trixie]
++   node0
     node3
-    ...
+```
 
-* Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
-`./playbooks/unattended-upgrades.yml`
-`Unattended-Upgrade::MinimalSteps "true";` is a great way of upgrading few packages and minor releases. If you use it in unattended-upgrades config, you should disable it. With `Unattended-Upgrade::MinimalSteps "true";` a major upgrade can take days to finish !
-`./playbooks/unattended-upgrades.yml -e "uu_minimal_steps=false"`
-* Adapt third party repositories on targets (**/etc/apt/sources.list.d/\*.list**) to reflect new codename or release.
-* Wait for upgrades. If you're impatient, force them via running `unattended-upgrades` on the target host or modify APT timers frequency.
+Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
+```sh
+./playbooks/unattended-upgrades.yml [-l node0]
+```
 
-When upgrade is successful :
+`Unattended-Upgrade::MinimalSteps "true";` is a great way of upgrading few
+packages and minor releases. If you use it in unattended-upgrades config, you
+should disable it for a major upgrade.
+With `Unattended-Upgrade::MinimalSteps "true";` a major upgrade can take days
+to finish !
 
-* Merge new config files if needed (<a href="https://wiki.sekoya.org/#!apt.md#Configuration_files_handling" target="new">https://wiki.sekoya.org/#!apt.md#Configuration_files_handling</a>)
-* Revert to your default MinimalSteps value if applicable by running the playbook again without extra var "uu_minimal_steps".
+```sh
+./playbooks/unattended-upgrades.yml -e "uu_minimal_steps=false" [-l node0]
+```
+Adapt third party repositories on targets (`/etc/apt/sources.list.d/*.list`)
+to reflect new codename or release.
 
-`./playbooks/unattended-upgrades.yml`
+Wait for upgrades. If you're impatient, force them by running
+`unattended-upgrades` on the target host or modify APT timers frequency.
+
+After successful upgrade :
+
+Merge new config files if needed.
+(search `/etc` for `*.dpkg-new` or `*.dpkg-dist` files).
+
+Revert to your default MinimalSteps value if applicable by running the
+playbook again without extra var "uu_minimal_steps".
+
+```sh
+./playbooks/unattended-upgrades.yml [-l node0]
+```
 
 You're done !
