@@ -47,9 +47,6 @@ Example to upgrade node0 from bookworm to trixie :
 ```
 
 Apply roles **apt** (<a href="https://github.com/mbocquet/apt" target="new">https://github.com/mbocquet/apt</a>) AND **unattended-upgrades** (this current role).
-```sh
-./playbooks/unattended-upgrades.yml [-l node0]
-```
 
 `Unattended-Upgrade::MinimalSteps "true";` is a great way of upgrading few
 packages and minor releases. If you use it in unattended-upgrades config, you
