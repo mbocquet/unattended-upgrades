@@ -1,6 +1,6 @@
 ---
 # tasks file for unattended-upgrades
-- name: "Add distribution-specific variables"
+- name: Distribution-specific variables
   ansible.builtin.include_vars:
     "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
@@ -10,7 +10,7 @@
           {{ ansible_facts.distribution_release }}.yml"
         - "{{ ansible_facts.distribution }}.yml"
       paths:
-        - 'vars'
+        - vars
   tags:
     - unattended-upgrades
     - vars
@@ -18,7 +18,7 @@
 
 - name: Package
   ansible.builtin.package:
-    name: '{{ uu_packages }}'
+    name: "{{ uu_packages }}"
     update_cache: true
   tags:
     - unattended-upgrades
@@ -42,16 +42,16 @@
     rename: true
   loop:
     - path: "{{ uu_auto_upgrade_config }}"
-      divert: "/etc/apt/20auto-upgrades.distrib"
+      divert: /etc/apt/20auto-upgrades.distrib
     - path: "{{ uu_unattended_upgrades_config }}"
-      divert: "/etc/apt/50unattended-upgrades.distrib"
+      divert: /etc/apt/50unattended-upgrades.distrib
   tags:
     - unattended-upgrades
     - dpkg_divert
 
 - name: Ensure obsolete files from previous role versions are absent
   ansible.builtin.file:
-    path: "/etc/apt/apt.conf.d/{{ item }}"
+    path: /etc/apt/apt.conf.d/{{ item }}
     state: absent
   loop:
     - 21auto-upgrades
@@ -63,7 +63,7 @@
 - name: Auto-upgrade config
   ansible.builtin.template:
     src: auto-upgrades.j2
-    dest: '{{ uu_auto_upgrade_config }}'
+    dest: "{{ uu_auto_upgrade_config }}"
     mode: "0644"
   tags:
     - unattended-upgrades
@@ -72,7 +72,7 @@
 - name: Unattended-upgrades config
   ansible.builtin.template:
     src: unattended-upgrades.j2
-    dest: '{{ uu_unattended_upgrades_config }}'
+    dest: "{{ uu_unattended_upgrades_config }}"
     mode: "0644"
   tags:
     - unattended-upgrades
