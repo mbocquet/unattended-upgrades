@@ -1,5 +1,5 @@
 ---
-uu_pattern_name: "Allowed-Origins"
+uu_pattern_name: Allowed-Origins
 uu_origins_pattern_default:
   - ${distro_id}:${distro_codename}
   - ${distro_id}:${distro_codename}-security

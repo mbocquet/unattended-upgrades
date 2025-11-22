@@ -6,7 +6,7 @@
 # but to help backporting and testing the configuration file keeps working on
 # Buster and older releases. (Closes: #933138)
 
-uu_pattern_name: "Origins-Pattern"
+uu_pattern_name: Origins-Pattern
 uu_origins_pattern_default:
   # default pattern (security related only) :
   - origin=Debian,codename=${distro_codename}-security,label=Debian-Security
