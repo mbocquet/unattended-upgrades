@@ -28,7 +28,7 @@ For each Debian version, use codename groups and related variables in Ansible in
     [trixie]
     node3
 
-In the Ansible inventory, move host from distro-codename group to distro-codename+1 group.
+In the Ansible inventory, move host from distro-codename group to distro-codename+n group.
 The inventory reflects the "desired" state.
 
 Example to upgrade node0 from bookworm to trixie :
